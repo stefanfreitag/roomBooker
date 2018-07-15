@@ -1,11 +1,9 @@
 package de.freitag.stefan.alexa.roombooker;
 
-import lombok.Data;
-import lombok.Getter;
+
 import lombok.Value;
 
 import java.time.Duration;
-import java.time.ZonedDateTime;
 
 @Value
 public class RoomReservation {
