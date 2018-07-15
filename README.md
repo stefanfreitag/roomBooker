@@ -26,3 +26,18 @@ RequestID: aedda1cb-86d0-11e8-ba07-3b2baa37df04
     "slotTime": "00:12"
   }
 }
+
+
+
+// 2018-07-14 19:42:08 <fe0b03e3-879d-11e8-ab30-4751aba997dc> INFO RoomBookerRequestHandler:28 - bot {name=RoomBookingService, alias=$LATEST, version=$LATEST}
+
+//2018-07-14 19:42:08 <fe0b03e3-879d-11e8-ab30-4751aba997dc> INFO RoomBookerRequestHandler:28 -
+// currentIntent {
+//  name=BookRoom,
+//  slots={slotDuration=PT4H,
+//      slotBuilding=Plan H, slotFive=yes, slotDay=2018-07-14, slotTime=07:00},
+//      slotDetails={slotDuration={resolutions=[], originalValue=4h},
+//      slotBuilding={resolutions=[{value=Plan H}], originalValue=plan h},
+//      slotFive={resolutions=[{value=Yes}], originalValue=yes},
+// slotDay={resolutions=[], originalValue=today},
+// slotTime={resolutions=[], originalValue=7 am}}, confirmationStatus=Confirmed}

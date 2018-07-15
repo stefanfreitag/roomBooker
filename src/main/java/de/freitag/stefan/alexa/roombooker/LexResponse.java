@@ -1,9 +1,9 @@
 package de.freitag.stefan.alexa.roombooker;
 
-import lombok.Getter;
+import lombok.Data;
 
-@Getter
-public class LexResponse {
+@Data
+class LexResponse {
 
     private DialogAction dialogAction;
 
