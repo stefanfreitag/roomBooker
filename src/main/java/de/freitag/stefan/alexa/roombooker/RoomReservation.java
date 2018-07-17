@@ -1,27 +1,28 @@
 package de.freitag.stefan.alexa.roombooker;
 
 
+import com.ullink.slack.simpleslackapi.SlackUser;
 import lombok.Value;
 
 import java.time.Duration;
 
 @Value
-public class RoomReservation {
+class RoomReservation {
 
-    private String building;
-    private String day;
-    private String time;
-    private Duration duration;
-    private boolean vc;
+    private final SlackUser user;
+    private final String building;
+    private final String day;
+    private final String time;
+    private final Duration duration;
+    private final boolean vcRequired;
 
-    public RoomReservation(final String building, final String day, final String time, final String duration, final boolean vcRequired) {
+    RoomReservation(final SlackUser user, final String building, final String day, final String time, final String duration, final boolean vcRequired) {
+        this.user = user;
         this.building = building;
         this.day = day;
         this.time = time;
-        //TODO: Handle DateTimeParseException
         this.duration = Duration.parse(duration);
-        this.vc = vcRequired;
+        this.vcRequired = vcRequired;
     }
-
 
 }

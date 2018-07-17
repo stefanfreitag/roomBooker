@@ -25,7 +25,7 @@ class Mailer {
             AmazonSimpleEmailService client =
                     AmazonSimpleEmailServiceClientBuilder.standard()
                             .withRegion(Regions.EU_WEST_1).build();
-            SendEmailRequest request = new SendEmailRequest()
+            SendEmailRequest request = new SendEmailRequest().withReplyToAddresses(reservation.getUser().getUserMail())
                     .withDestination(
                             new Destination().withToAddresses(mailerConfig.getTo()))
                     .withMessage(new com.amazonaws.services.simpleemail.model.Message()
@@ -44,17 +44,19 @@ class Mailer {
     }
 
     static String generateHtmlTextMessage(final RoomReservation reservation) {
-        Object[] params = new Object[]{reservation.getBuilding(), reservation.getDay(), reservation.getTime(), reservation.getDuration(), reservation.isVc()};
+        Object[] params = new Object[]{reservation.getUser().getRealName(),reservation.getUser().getUserMail(),reservation.getBuilding(), reservation.getDay(), reservation.getTime(), reservation.getDuration(), reservation.isVcRequired()};
         return MessageFormat.format(
                 "<h3>Hello Stefan,</h3><br />" +
                         "<p>you tried to reserve a room.</p><br />" +
                         "<table border=\"1\">" +
                         "<tr><th colspan=\"2\">Reservation information</th></tr>" +
-                        "<tr><td>Building</td><td>{0}</td></tr>" +
-                        "<tr><td>Date</td><td>{1}</td></tr>" +
-                        "<tr><td>Time</td><td>{2}</td></tr>" +
-                        "<tr><td>Duration</td><td>{3}</td></tr>" +
-                        "<tr><td>VC required? </td><td>{4}</td></tr>" +
+                        "<tr><td>Name:</td><td>{0}</td></tr>" +
+                        "<tr><td>E-Mail:</td><td>{1}</td></tr>" +
+                        "<tr><td>Building</td><td>{2}</td></tr>" +
+                        "<tr><td>Date</td><td>{3}</td></tr>" +
+                        "<tr><td>Time</td><td>{4}</td></tr>" +
+                        "<tr><td>Duration</td><td>{5}</td></tr>" +
+                        "<tr><td>VC required? </td><td>{6}</td></tr>" +
                         "</table>" +
                         "<br />" +
                         "<br />" +

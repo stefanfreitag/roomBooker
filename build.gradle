@@ -35,7 +35,8 @@ dependencies {
             'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
             'org.eclipse.jetty:jetty-servlet:9.0.6.v20130930',
             'org.slf4j:slf4j-api:1.7.10',
-            'com.google.guava:guava:23.5-jre'
+            'com.google.guava:guava:23.5-jre',
+            'com.ullink.slack:simpleslackapi:1.2.0'
     )
 }
 
