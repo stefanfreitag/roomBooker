@@ -28,8 +28,6 @@ public class RoomBookerRequestHandler implements RequestHandler<Map<String, Obje
         try {
             session.connect();
             user = session.findUserById(userName);
-            log.info("Found slack user: " + user.getUserMail());
-            user.getRealName();
             session.disconnect();
         } catch (IOException e) {
             log.error(e.getMessage(), e);
