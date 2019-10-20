@@ -24,7 +24,7 @@ repositories {
 
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.0'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
     compile('com.amazon.alexa:alexa-skills-kit:1.8.1',
             'com.amazonaws:aws-lambda-java-core:1.2.0',
             'com.amazonaws:aws-java-sdk-ses:1.11.354',
@@ -32,10 +32,10 @@ dependencies {
             'log4j:log4j:1.2.17',
             'org.apache.commons:commons-lang3:3.3.2',
             'org.apache.directory.studio:org.apache.commons.io:2.4',
-            'org.eclipse.jetty:jetty-server:9.0.6.v20130930',
-            'org.eclipse.jetty:jetty-servlet:9.0.6.v20130930',
+            'org.eclipse.jetty:jetty-server:9.4.11.v20180605',
+            'org.eclipse.jetty:jetty-servlet:9.4.11.v20180605',
             'org.slf4j:slf4j-api:1.7.10',
-            'com.google.guava:guava:23.5-jre',
+            'com.google.guava:guava:28.1-jre',
             'com.ullink.slack:simpleslackapi:1.2.0'
     )
 }
