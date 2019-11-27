@@ -5,10 +5,9 @@ import lombok.Data;
 @Data
 class LexResponse {
 
-    private final DialogAction dialogAction;
+  private final DialogAction dialogAction;
 
-    LexResponse(final DialogAction dialogAction) {
-        this.dialogAction = dialogAction;
-    }
-
+  LexResponse(final DialogAction dialogAction) {
+    this.dialogAction = dialogAction;
+  }
 }

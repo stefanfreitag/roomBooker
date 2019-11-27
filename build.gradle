@@ -1,7 +1,12 @@
 plugins {
-    id "fr.brouillard.oss.gradle.jgitver" version "0.4.1"
+    id "fr.brouillard.oss.gradle.jgitver" version "0.10.0-rc01"
+    id "net.ltgt.errorprone" version "1.1.1"
     id "java"
     id "idea"
+    id "org.owasp.dependencycheck" version "5.2.4"
+    id 'io.franzbecker.gradle-lombok' version "3.2.0"
+    id "com.diffplug.gradle.spotless" version "3.26.0"
+    id "com.github.johnrengelman.shadow" version "5.2.0"
 }
 
 group = "de.freitag.stefan.alexa"
@@ -22,19 +27,19 @@ repositories {
     mavenCentral()
 }
 
+ext {
+    errorproneVersion='2.3.2'
+}
 
 dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.10'
-    compile('com.amazon.alexa:alexa-skills-kit:1.8.1',
+    errorprone('com.google.errorprone:error_prone_core:' + errorproneVersion)
+
+    implementation('com.amazon.alexa:ask-sdk:2.26.0',
             'com.amazonaws:aws-lambda-java-core:1.2.0',
             'com.amazonaws:aws-java-sdk-ses:1.11.354',
-            'com.amazonaws:aws-lambda-java-log4j:1.0.0',
-            'log4j:log4j:1.2.17',
-            'org.apache.commons:commons-lang3:3.3.2',
-            'org.apache.directory.studio:org.apache.commons.io:2.4',
-            'org.eclipse.jetty:jetty-server:9.4.11.v20180605',
-            'org.eclipse.jetty:jetty-servlet:9.4.11.v20180605',
-            'org.slf4j:slf4j-api:1.7.10',
+            'com.amazonaws:aws-lambda-java-log4j2:1.1.0',
+            'org.apache.logging.log4j:log4j-api:2.8.2',
+            'org.apache.logging.log4j:log4j-core:2.8.2',
             'com.google.guava:guava:28.1-jre',
             'com.ullink.slack:simpleslackapi:1.2.0'
     )
@@ -44,10 +49,39 @@ jgitver {
     mavenLike true
 }
 
-task fatJar(type: Jar) {
-    baseName = project.name + '-fat'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
+wrapper{
+    gradleVersion = '6.0.1'
+    distributionType = Wrapper.DistributionType.BIN
 }
 
-build.dependsOn fatJar
+
+dependencyCheck {
+    failBuildOnCVSS=6
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.compilerArgs << "-Xlint:all"
+    options.errorprone {
+        disableWarningsInGeneratedCode = true
+        ignoreUnknownCheckNames = true
+        allErrorsAsWarnings = true
+        errorproneArgs = ['-Xep:ParameterName:OFF',
+                          '-Xep:FallThrough:OFF',
+                          '-Xep:FunctionalInterfaceClash:OFF',
+                          '-Xep:AssertionFailureIgnored:OFF',
+                          '-Xlint:unchecked',
+                          '-Xlint:deprecation'
+        ]
+    }
+}
+
+lombok {
+    version = "1.18.10"
+    sha256 = "2836e954823bfcbad45e78c18896e3d01058e6f643749810c608b7005ee7b2fa"
+}
+
+spotless {
+    java {
+        googleJavaFormat('1.7')
+    }
+}

@@ -31,7 +31,7 @@ Slack seemed to be the easiest of the candidates and I used it on a daily base.
 TODO
 
 ### Slack
-I followed the steps described in the integration instructions (see Links section) and
+I followed the steps described in the integration instructions (see [Links](#links) section) and
 added two more permissions
 
 * Access your workspace’s profile information (_users:read_)
@@ -42,7 +42,7 @@ the reservation: i) the real name and ii) the e-mail address of the user. Latter
 the reply-to field of the send e-mail.
 
 
-# Links 
+# <a name="links"></a>Links 
 * [Amazon Lex Model Building Service](https://docs.aws.amazon.com/lex/latest/dg/API_Types_Amazon_Lex_Model_Building_Service.html)
 * [JSON Format for Importing and Exporting Lex related stuff](https://docs.aws.amazon.com/lex/latest/dg/import-export-format.html)
 * [Tutorial: AWS Lambda function for Amazon Lex; Implemented on Java](https://www.youtube.com/watch?v=HkMi5xPyz1g)
